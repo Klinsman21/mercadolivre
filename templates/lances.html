@@ -1,0 +1,102 @@
+{% extends 'base.html' %} 
+
+{% block title %}Intin Livre{% endblock %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+    <nav class="navbar navbar-custom" >
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="vertical-align: center;" href="/"><img width="40" height="30" src="https://logodownload.org/wp-content/uploads/2016/08/Mercado-Livre-logo-6.png"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-custom" style="margin-left: 50px;">
+          <li class="active"><a class="color-custom" href="/my-product/">Meus Produtos</a></li>
+          <li class="active"><a class="color-custom" href="/create/">Vender</a></li>
+        </ul>
+
+        <p>{{user.name}}</p>
+        <ul class="nav navbar-nav navbar-right navbar-custom">
+           <li><a class="color-custom"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
+          <li><a class="color-custom" href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div style="margin-left: 8%;">
+      {%if object_list %}
+      {%for x in object_list%}
+            <div class="box" style="text-align: center;">
+              <img class="img1" src="{{ MEDIA_URL }}{{ x.produto.image }}">
+              <h3>{{x.produto.name}}</h3>
+              <h5>Seu lance foi de R${{x.lance}}</h5>
+              {%if x.produto.state %}
+              <h6>Acaba em {{x.produto.Prazo}}</h6>
+              <form method="GET">
+                <input type="hidden" name="id" value={{x.id}}>
+                <button class="btn btn-danger" type="submit">Desistir</button>
+              </form>
+              {%else%}
+              <h6>Encerrado</h6>
+              {%if x.bought %}
+                <h3>Comprado por você!</h3>
+              {%endif%}
+              {%endif%}        
+      {% endfor %}
+      {%else%}
+      <h1>Não há nada para mostar aqui!</h1>
+      {%endif%}
+
+    </div>
+
+
+{% else %}
+  
+<nav class="navbar navbar-custom" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" style="vertical-align: center;" href="/"><img width="40" height="30" src="https://logodownload.org/wp-content/uploads/2016/08/Mercado-Livre-logo-6.png"></a>
+    </div>
+    <ul class="nav navbar-nav navbar-custom" style="margin-left: 50px;">
+      <li class="active"><a class="color-custom" href="#">Lançes</a></li>
+      <li class="active"><a class="color-custom" href="/my-product/">Meus Produtos</a></li>
+      <li class="active"><a class="color-custom" href="/create/">Vender</a></li>
+    </ul>
+     <form class="form-inline my-2 my-lg-0 nav navbar-nav" method="GET" action="{% url 'leilao:search' %}" style="margin-top: 6px;">
+          {% csrf_token %}
+          <div class="buttonInside center2">
+          <input name="q" size="50" class="form-control mr-sm-2" type="text" placeholder="Buscar produto" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search" value="search"><i class="material-icons">search</i></button>
+          </div>
+        </form>
+    <ul class="nav navbar-nav navbar-right navbar-custom">
+      <li><a class="color-custom" href="#"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+      <li><a class="color-custom" href="/accounts/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div style="margin-left: 8%;">
+      {%for x in object_list%}
+          {% if x == False %}
+            <h1>Desculpe a pesquisa não retornou resultados</h1>
+    
+          {%else%}
+            <div class="box" style="text-align: center;">
+              <img class="img1" src="{{ MEDIA_URL }}{{ x.image }}">
+              <h3>{{x.name}}</h3>
+              <h5>Lançe inicial de R${{x.startPrice}}</h5>
+              <h6>Acaba em {{x.Prazo}}<h6>
+              <button class="btn btn-primary">Dá lançe</button>
+            </div>
+      {% endif %}
+      {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+{% endblock %}

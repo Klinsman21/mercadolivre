@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="upper">
+   <a class="navbar-brand" style="vertical-align: center;" href="/"><img width="160" height="100" src="https://negocioonlineja.com/wp-content/uploads/2018/02/Mercado-Livre-logo-1.png"></a>
+</div>
+<div class="lower">
+    
+</div>
+
+<div class="center top-buffer">  
+        <div class="text-center">
+        <div style="margin-top:20px; width: auto; margin-right: 50px; margin-left: 50px;">
+        <form method="POST" class="form-signin">
+                {% csrf_token %}
+
+                <label class="container-fluid">Nome de usuário:</label>
+                <input type="text" name="username" id="id_username" required class="form-control">
+
+                <label class="container-fluid">Senha:</label>
+                <input type="password" name="password" id="id_password" required class="form-control"><br>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="submit" name="submit" class="btn btn-primary">Login</button>
+                <!--
+                <button type="submit" name="submit" class="btn btn-primary">Login</button>
+                <button style="margin: 5px;" onclick="window.location.href='/'" name="submit" value="b2"  class="btn btn-secundary">Home</button>
+            -->
+                </div>
+                
+        </form>
+     </div>   
+    </div>
+</div>
+
+{% endblock %}
+
+	
+

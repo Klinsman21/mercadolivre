@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="upper">
+   <a class="navbar-brand" style="vertical-align: center;" href="/"><img width="160" height="100" src="https://negocioonlineja.com/wp-content/uploads/2018/02/Mercado-Livre-logo-1.png"></a>
+</div>
+<div class="lower">
+    
+</div>
+
+<div class="center4 top-buffer">  
+        <div class="text-center">
+        <div style="margin-top:20px; width: auto; margin-right: 50px; margin-left: 50px;">
+        <form method="POST" class="form-signin">
+                {% csrf_token %}
+
+                <input style="margin-top: 10px;"  "type="text" name="username" class="form-control" placeholder="UserName" required id="id_username">
+                <p>Não use caracters especiais como: @, #, $</p><br>
+                
+                <input required type="password" name="password1" class="form-control" placeholder="Senha" id="id_password1"><br>
+                <ul style="text-align: left;">
+                    <li>Sua senha não pode ser tão parecida com suas outras informações pessoais.</li>
+                    <li>Sua senha precisa conter pelo menos 8 caracteres.</li>
+                    <li>Sua senha não pode ser uma senha habitualmente utilizada.</li>
+                    <li>Sua senha não pode ser inteiramente numérica.</li>
+                </ul>
+                 
+
+                <input required type="password" name="password2" class="form-control" placeholder="Confirme Senha" id="id_password2"><br>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                
+                <button style="margin: 5px; " type="submit" name="submit" class="btn btn-primary">Cadastrar</button>
+
+                </div>
+                </div>
+                <div class="form-group">
+
+        </form>
+                
+        </form>
+     </div>   
+    </div>
+</div>
+
+{% endblock %}

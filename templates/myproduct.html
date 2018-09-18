@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Produtos{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <nav class="navbar navbar-custom" >
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="vertical-align: center;" href="/"><img width="40" height="30" src="https://logodownload.org/wp-content/uploads/2016/08/Mercado-Livre-logo-6.png"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-custom" style="margin-left: 50px;">
+          <li class="active"><a class="color-custom" href="/create/">Vender</a></li>
+        </ul>
+
+        <p>{{user.name}}</p>
+        <ul class="nav navbar-nav navbar-right navbar-custom">
+           <li><a class="color-custom"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
+          <li><a class="color-custom" href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div style="margin-left: 8%;">
+      {%if object_list %}
+      {%for x in object_list%}
+          {% if x == False %}
+            <h1>Desculpe a pesquisa não retornou resultados</h1>
+    
+          {%else%}
+            <div class="box" style="text-align: center;">
+              <img class="img1" src="{{ MEDIA_URL }}{{ x.image }}">
+              <h3>{{x.name}}</h3>
+              {%if x.vendido%}
+              <h5>Seu produto foi vendido à {{x.compradoPor}}</h5>
+              {%else%}
+              <h5>Lançe inicial de R${{x.startPrice}}</h5>
+              <h6>Acaba em {{x.Prazo}}</h6>
+              {%endif%}
+              <form method="GET" action="{% url 'leilao:my' %}">
+                <input type="hidden" name="id" value={{x.id}}>
+                <button class="btn btn-danger" type="submit">Excluir</button>
+              </form>
+              <a href='{% url "leilao:update" x.pk %}'>Atualizar</a>
+            </div>
+          {% endif %}
+      {% endfor %}
+      {%else%}
+      <h1>Não há nada para mostar aqui!</h1>
+      {%endif%}
+
+    </div>
+
+
+{% else %}
+  
+<META http-equiv="refresh" content="0;URL=/accounts/login/"> 
+
+{% endif %}
+
+
+
+{% endblock %}

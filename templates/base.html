@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Base file{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" 
+    href="{% static 'admin/css/forms.css' %} "/>
+<link rel="stylesheet" type="text/css" 
+    href="{% static 'admin/css/base.css' %} "/>
+<link rel="stylesheet" type="text/css" 
+    href="{% static 'admin/css/global.css' %}"/>
+<link rel="stylesheet" type="text/css" 
+    href="{% static 'admin/css/widgets.css' %}"/>
+
+<script type="text/javascript" 
+    src="/admin/jsi18n/"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/core.js' %}"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/jquery.js' %}"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/actions.js' %}"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/calendar.js' %}"></script>
+<script type="text/javascript" 
+    src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+
+<style>
+.img1 {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+div.center {
+  width: 500px;
+  height: 200px;
+  display: block;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 10px 1px #888888;
+}
+div.center4 {
+  width: 500px;
+  height: 400px;
+  display: block;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 10px 1px #888888;
+}
+div.center2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.center3 {
+  display: block;
+  background-color: #ffffff;
+  position: absolute;
+  top: 100px;
+  left: 33%;
+  padding: 20px;
+  box-shadow: 1px 1px 10px 1px #888888;
+ 
+}
+.input-margin{
+    margin-top: 30px;
+}
+ 
+ .upper, .lower {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.upper {
+  top: 0;
+  height: 50%;
+  background-color: #fffa65;  
+}
+
+.lower {
+  bottom: 0;
+  height: 50%;
+  background-color: #ffffff;    
+}
+ button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.box {
+  display: inline-block;
+  width: 350px;
+  height: 200px;
+  margin: 1em;
+  margin-top: 50px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px 1px #888888;
+}
+
+.block-color{
+  background-color: #ffffff;
+}
+
+.title-h1{
+  position: relative;
+  top: 50%;
+  transform: translatey(-50%);
+}
+
+.text-relative{
+    background-color: #ffffff;
+    max-width: 300px;
+    border-radius: 50px;
+    margin: 0px auto;
+    padding: 0px;
+    word-break: break-all; 
+}
+
+.navbar-custom {
+  color:#57606f;
+  background-color: #fffa65;
+}
+.color-custom {
+  color:#57606f;
+}
+
+
+</style>
+  	
+
+</head>
+<body>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+</body>
+</html>
