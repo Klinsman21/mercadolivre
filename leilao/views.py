@@ -67,7 +67,7 @@ class Home(generic.ListView):
 					models.Lance.objects.filter(produto=obj, lance=values).update(bought=True)
 
 		return models.Produto.objects.all()
-
+#leilao
 class MeusLances(generic.ListView):
 	model = models.Lance
 	template_name = 'lances.html'
