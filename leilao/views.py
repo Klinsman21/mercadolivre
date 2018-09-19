@@ -60,7 +60,7 @@ class Home(generic.ListView):
 		dateAtual = date.today()
 		for x in models.Produto.objects.all():
 			if(x.state == True):
-				if(x.Prazo < dateAtual):
+				if(x.Prazo < dateAtual or x.Prazo == dateAtual):
 					obj = models.Produto.objects.get(id=x.id)
 					models.Produto.objects.filter(id=x.id).update(state=False, vendido=True)
 					values = models.Produto.objects.get(id=x.id).ultimoLance
