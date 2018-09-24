@@ -6,7 +6,6 @@ from django.forms.fields import DateField
 class ProductForm(forms.ModelForm):
 
 	#finalDate = DateField(widget=AdminDateWidget)
-	Prazo = forms.DateField(widget=AdminDateWidget)
 	class Meta:
 		model = models.Produto
 		fields = ('name', 'keyword', 'image', 'startPrice', 'Prazo',)

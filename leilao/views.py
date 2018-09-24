@@ -8,10 +8,11 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponseRedirect
 import random
 from datetime import date
+import datetime
 from django.urls import reverse_lazy
 
 from . import models, forms
-
+ 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
@@ -21,6 +22,12 @@ class CreateProduct(generic.CreateView):
 	form_class = forms.ProductForm
 	success_url = reverse_lazy('home')
 	template_name = 'produto.html'
+	def get_context_data(self, **kwargs):
+		data = date.today()
+		atual = date.fromordinal(data.toordinal()+1)
+		kwargs['date'] = str(atual)
+		return super(CreateProduct, self).get_context_data(**kwargs)
+
 	def form_valid(self, form):
 		obj = form.save(commit=False)
 		obj.user = models.User.objects.get(id=self.request.user.pk)
